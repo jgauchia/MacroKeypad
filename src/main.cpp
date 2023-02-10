@@ -19,7 +19,6 @@ bool is_menu = false;
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
 
-
 #include "I2CKeyPad.h"
 #include "utils/texts.h"
 #include "hardware/serial.h"
@@ -28,11 +27,10 @@ bool is_menu = false;
 #include "hardware/ble.h"
 #include "hardware/encoder.h"
 #include "hardware/keypad.h"
+#include "hardware/battery.h"
 #include "gui/menuicon.h"
 #include "utils/OTA.h"
 #include "hardware/button.h"
-
-
 
 void setup()
 {
@@ -44,6 +42,8 @@ void setup()
   init_keypad();
   init_BUT();
   init_BLE();
+  init_ADC();
+  batt_level = battery_read();
 
   lcd.clearBuffer();
   lcd.setFont(u8g2_font_ncenB24_tr);
@@ -58,6 +58,7 @@ void loop()
     lcd.setFont(u8g2_font_ncenB24_tr);
     lcd.setCursor(40, 50);
     lcd.print(get_key());
+    lcd.print(((battery_read() - battery_min) / (battery_max - battery_min)) * 100);
     lcd.sendBuffer();
   }
   else
