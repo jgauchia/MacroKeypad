@@ -58,7 +58,7 @@ void loop()
     lcd.setFont(u8g2_font_ncenB24_tr);
     lcd.setCursor(40, 50);
     lcd.print(get_key());
-    lcd.print(((battery_read() - battery_min) / (battery_max - battery_min)) * 100);
+    //lcd.print(((battery_read() - battery_min) / (battery_max - battery_min)) * 100);
     lcd.sendBuffer();
   }
   else
