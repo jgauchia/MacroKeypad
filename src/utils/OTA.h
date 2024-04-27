@@ -6,8 +6,8 @@
  * @date 2023-01-24
  */
 
-const char* ssid = "CERBERUS NET NEW";
-const char* password = "+K1h42a76-";
+const char* ssid = "--------";
+const char* password = "-----------";
 
 AsyncWebServer server(80);
 
